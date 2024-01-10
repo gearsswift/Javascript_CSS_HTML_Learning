@@ -1,0 +1,74 @@
+html{
+    padding: 0%;
+}
+html *{
+    box-sizing: inherit;
+}
+:root{
+    --color: white;
+    --colorRed: #f75a16;
+    --colorAuqa : aquamarine;
+}
+body{
+    background-color: var(--colorRed);
+}
+header{
+    color: var(--color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid var(--color);
+}
+
+#board{
+    padding: 0%;
+    margin-top: 10%;
+   width: 300px;
+   height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border:  solid var(--color);
+}
+
+.board_piece{
+    margin: 0%;
+    width: 90px;
+    height: 90px;
+    border: solid var(--color);
+    transition: 500ms;
+}
+
+.board_piece:hover{
+    background-color: var(--color);
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.whoplays{
+    color: var(--color);
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+.winner{
+    margin-left: auto;
+    margin-right: auto;
+    color:white;
+}
+
+.X{
+    background-color: rgb(121, 192, 250);
+}
+
+.Y{
+    background-color: rgb(224, 224, 163);
+}

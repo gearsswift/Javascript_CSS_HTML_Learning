@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: solid;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="" alt="character_image">
+    </div>
+    <h1 id="name"></h1>
+    <h1 id="height"></h1>
+    <button>Generate Character</button>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            const button = $("button")
+            const image = $("img")
+            const name = $("#name")
+            const height = $("#height")
+            button.on("click",function(){
+                let rnd = (Math.random()) * 88
+                rnd = Math.ceil(rnd);
+                if(rnd === 0)
+                    rnd = 1;
+                $.get(`https://akabab.github.io/starwars-api/api/id/${rnd}.json`,function(data){
+                    height.text("HEIGHT: " + data["height"])
+                    name.text("NAME: " + data["name"])
+                    image.attr("src",data["image"])
+                })
+            })
+        })
+    </script>
+</body>
+</html>

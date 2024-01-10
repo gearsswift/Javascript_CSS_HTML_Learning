@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery101</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            margin: 50px auto;
+        }
+        .box
+        {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            margin: 50px auto;
+        }
+        .blue{
+            background-color: blue;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <h1>My name is Joshua</h1>
+    <button class="custom-button">Press Me</button>
+    <p class="custom-class">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt similique assumenda nostrum aliquid voluptatem delectus quod laudantium, deserunt culpa corporis illum cumque dolor facere. Quia explicabo quae cupiditate deleniti odio?</p>
+    <p id="customid">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia aliquid veritatis commodi facere enim dolor, velit, tempora quasi ipsam excepturi expedita minus ducimus, dolores quos nihil vero laudantium! Est, natus!</p>
+    <div id="custom-id"></div>
+    <section>Put some html code in here</section>
+    <input type="text" value="Hello World">
+    <section id="new-section">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore assumenda fugiat necessitatibus! Labore maiores corrupti a autem pariatur tenetur qui blanditiis. Quisquam in quos inventore ducimus tenetur quibusdam neque quae.</section>
+
+    <h1>Jack </h1>
+    <h2>Continue</h2>
+    <div id="target">
+        Add HTml befor and after this
+    </div>
+    <div id="parent">
+        <strong>I am strong</strong>
+        <em>Black people</em>
+    </div>
+    <div id="putabuttonhere">
+    </div>
+
+    <button id="hide">Hide Me</button>
+    <div id="box">
+    </div>
+    <input type="text" class="select-me" value="Hello world">
+    <textarea name="mytextarea" id="" cols="30" rows="10"></textarea>
+
+    <form>
+        <input type="text" name="name" placeholder="Your name">
+        <button type="submit">Submit</button>
+    </form>
+    <button class="toggle-blue-class">Toggle Me</button>
+    <div class="box"></div>
+    <button class="fade">Fade</button>
+    <ul>
+        <li>First Item</li>
+        <li>Second Item</li>
+        <li>Third Item</li>
+    </ul>
+    <input type="text" class="newinput">
+    <!--JQuery implementation-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        //Here is where we make sure our JQuery is fully loaded
+        /*Syntax - $(selector/selectors).event(function() {run code}) 
+            run code
+        })*/
+        $(document).ready(function() {
+            console.log("JQuery is loaded")
+            $("h1,p").text("Changed using JQuery");
+            $("p.custom-class").text("Change for the better")
+            $("#custom-id").html("<h1>Ginger Bread</h1>")
+            $("section").text("<b> vs <strong>")
+            const value = $("input").val()
+            console.log("Change ",value)
+            const texxt =  $("new-section").html()
+            //Appending to an existing htm element
+            $("h1").append("<strong>This is bold</strong>")
+            //Prepending elements to an html element
+            $("h1").prepend("<i>This is italics</i>")   
+            //We can chain append and prepend together
+            $("h2").append("Lets append").prepend(" We prepend")
+            //Add an element before and after our target element
+            $("#target").before("<h2>Black man</h2>")
+            $("target").after("This happens after")
+            //Deleting everything inside an element
+            $("#parent").empty()
+            //Event Listener - applys a function when 
+            //an html element is interacted with
+            //Here we add a method to our button click event - 1st method
+            // $("button").click(function() {
+            //     console.log("Click me")
+            // })    
+            //Here we add a method to our button click event = 2nd method
+            // $("button").on("click",function() {
+            //      console.log("Click me")
+            // })
+            //Here we add a method to our button click event = 3rd method (Best)
+            $(document).on("click", "button", function() {
+                  console.log("Click me")
+            })
+            //Adding an html element in our accessed element
+            const parent  = $("#putabuttonhere");
+            parent.html("<button>Click me dynamic button</button>")   
+
+            //Hover event listener
+            $("#box").on("mouseenter",function() {
+                console.log("You are in this box")
+            }).on("mouseleave",function(){
+                console.log("You left the box")
+            })
+            
+            //Getting the input from the input field everytime it is edited
+            $(".select-me").on("keyup",function(){
+                console.log($(this).val());
+            })
+            
+            //Focusing in on an object : essentially clicking inside it
+            $("[name='mytextarea']").on("focus",function(){
+                console.log("You focused into the text area")
+            })
+
+            //Unfocusing out of an object
+            $("textarea").on("blur",function(){
+                console.log("blur off of me")
+            })
+
+            //Form submission, here we stops the form from performing its
+            //default submission e.g putting values in the url
+            $("form").on("submit",function(event){
+                event.preventDefault()
+                console.log("form was submitted")
+            })
+            let hide = false
+            //Hiding an element when a button is clicked
+            $("#hide").on("click",function(){
+                const box = $("#box");
+                if(hide){
+                    hide = false
+                    box.show()
+                }
+                else
+                {
+                    hide = true
+                    box.hide()
+                }
+                
+            })
+            //adding classes to our element after 2 seconds
+            // setTimeout(() => {
+            //     $(".box").addClass("blue");
+            // }, 2000);
+            // //Removing a class from our element after 3 seconds
+            // setTimeout(() => {
+            //     $(".box").removeClass("blue")
+            // }, 4000);
+            
+            //Here we toggle our class on and off
+            // const box = $(".box")
+            // $(".toggle-blue-class").on("click", ()=>{
+            //     box.toggleClass("blue")
+            // })
+            //Adding custom css to our box
+            //$(".box").css("background-color","orange").css("border","10px solid black")
+            $(".box").css({
+                backgroundColor: "yellow",
+                border: "10px solid",
+                borderRadius: "10px"
+            })
+            //Fading an element in and out
+             const box = $(".box")
+            // box.fadeOut(2000)
+            // box.fadeIn(5000)
+            //Toggling a fade affect
+            // $(".fade").on("click",function(e){
+            //     box.fadeToggle()
+            // })
+            //Callback function 
+            //Will perform slideup then run a functioon after
+            // $(".fade").on("click",function(e){
+            //         box.slideToggle(1500,function(){
+            //         console.log("Slide  done")
+            //     })
+            // })
+            //Working with animations- keep in mind you cannot animate colors
+            // $(".fade").on("click",function(){
+            //     box.animate({
+            //         opacity: 0.5,
+            //         width: "500px"
+            //     },4000)
+            // })    
+            //Doing something when our window is resized
+            $(window).on("resize",function(){
+                console.log($(window).width(), "X", 
+                $(window).height())
+            })
+            //looping through elements
+            $("li").each(function(index,element){
+                $(element).text(`${index} New Item`)
+            })
+            //Changing element attributes
+            const $input = $(".newinput");
+            $("input").attr("type","password");//Setting the attribute type to password
+
+        })
+    </script>
+</body>
+</html>
