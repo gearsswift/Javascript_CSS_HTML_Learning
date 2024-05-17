@@ -174,3 +174,23 @@ const character = {
 //Adding more to an object
 character.speak("Man");
 
+//Promises - In the below promise we have a variable made equal to 1+1 if a is equal to 2 the promise is resolved
+//and therefore we can call the passed in resolve and pass in any message we want otherwise if a is not 2 we reject the promise
+//and call our passed in reject function with any value we want
+let p = new Promise((resolve,reject)=>
+{
+    let a = 1 + 1
+    if(a ==2)
+        resolve("Success")
+    else
+        reject("Failed")
+})
+
+//Running our promise , what inside of then will be ran if our promise was resolved
+//otherwise what is inside our catch will run if our promise was rejected and the messages we recieve will
+// be the ones we put into our resolve and reject methods when we invoked them within our promise
+p.then((message)=>{
+    console.log(message)
+}).catch((message)=>{
+    console.log(message)
+})
